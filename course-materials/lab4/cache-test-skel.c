@@ -41,7 +41,7 @@ int get_block_size(void) {
   /* YOUR CODE GOES HERE */
   access_cache(0);
   int i = 1;
-  while (access_cache(i) == true) {
+  while (access_cache(i) == TRUE) {
       i++;
   }
   return i;
@@ -57,7 +57,7 @@ int get_cache_size(int size) {
   for (i = 0; i < 1000000; i+=size) {
       access_cache(i);
       for (j = 0; j <= i; j+=size) {
-          if (access_cache(j) == false) {
+          if (access_cache(j) == FALSE) {
               return i;
           }
       }
@@ -76,7 +76,7 @@ int get_cache_assoc(int size) {
   for (i = 0; i < 10000; i++) {
       access_cache(i*size);
       for (j = 0; j <= i*size; j+=size) {
-          if (access_cache(j) == false); {
+          if (access_cache(j) == FALSE); {
               return i;
           }
       }
