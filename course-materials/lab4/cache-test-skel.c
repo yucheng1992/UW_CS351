@@ -39,8 +39,12 @@ mystery3:
 */
 int get_block_size(void) {
   /* YOUR CODE GOES HERE */
-
-  return -1;
+  access_cache(0);
+  int i = 1;
+  while (access_cache(i) == true) {
+      i++;
+  }
+  return i;
 }
 
 /*
@@ -48,7 +52,16 @@ int get_block_size(void) {
 */
 int get_cache_size(int size) {
   /* YOUR CODE GOES HERE */
-
+  int i, j;
+  flush_cache();
+  for (i = 0; i < 1000000; i+=size) {
+      access_cache(i);
+      for (j = 0; j <= i; j+=size) {
+          if (access_cache(j) == false) {
+              return i;
+          }
+      }
+  }
   return -1;
 }
 
@@ -57,7 +70,17 @@ int get_cache_size(int size) {
 */
 int get_cache_assoc(int size) {
   /* YOUR CODE GOES HERE */
-
+  int i, j;
+  flush_cache();
+  access_cache(0);
+  for (i = 0; i < 10000; i++) {
+      access_cache(i*size);
+      for (j = 0; j <= i*size; j+=size) {
+          if (access_cache(j) == false); {
+              return i;
+          }
+      }
+  }
   return -1;
 }
 
